@@ -1,0 +1,71 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(home: ButtonDisplayExample()));
+}
+
+class ButtonDisplayExample extends StatefulWidget {
+  @override
+  _ButtonDisplayExampleState createState() => _ButtonDisplayExampleState();
+}
+
+class _ButtonDisplayExampleState extends State<ButtonDisplayExample> {
+  bool showImage = true; // Flag to switch between image and details
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Button Display Example")),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Display area
+            if (showImage)
+              Image.asset(
+                'assets/sample_image.png', // Make sure this image exists in assets
+                width: 200,
+                height: 200,
+              )
+            else
+              Column(
+                children: [
+                  Text("Name: John Doe", style: TextStyle(fontSize: 20)),
+                  SizedBox(height: 10),
+                  Text("Phone: +91 9876543210", style: TextStyle(fontSize: 20)),
+                  SizedBox(height: 10),
+                  Text("Email: johndoe@example.com", style: TextStyle(fontSize: 20)),
+                ],
+              ),
+
+            SizedBox(height: 40),
+
+            // Buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      showImage = true; // Show image
+                    });
+                  },
+                  child: Text("A"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      showImage = false; // Show details
+                    });
+                  },
+                  child: Text("B"),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
